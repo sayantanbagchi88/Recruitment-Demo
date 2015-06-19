@@ -1,0 +1,50 @@
+<apex:page StandardController="Detail_Menu_Bill__c" extensions="MycustomlookupforDetailMenu" id="Page" tabstyle="Menu_Item__c">
+
+ <script type="text/javascript"> 
+ function openLookup1(name, id){
+    var url="https://c.ap1.visual.force.com/apex/CustomlookupPopupMenuItem?namefield=Page:myForm:PageBlock:pageblocksection:detailMenuItem" +  "&idfield=" + id;
+//    alert(url);
+    var newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+    if (window.focus) 
+       {
+       newWin.focus();
+       }
+ return false;
+ }
+       
+ function closeLookupPopup()
+ {
+    if (null!=newWin)
+    {
+       newWin.close();
+    }  
+ }
+ 
+
+</script>
+
+<apex:sectionHeader title="Menu Item Page"  subtitle="Custom Lookup For Menu" />
+
+  <apex:form id="myForm">  
+    <apex:PageBlock id="PageBlock">        
+      <apex:pageBlockSection columns="2" title="Custom Lookup" id="pageblocksection">
+        <apex:inputField label="Detail Menu Bill Number" value="{!mi1.Bill_Number__c}"  />
+        <apex:inputHidden id="targetNameId" value="{!mi1.Menu_Item__c}"/>
+        <apex:inputText label="Detail Menu Item" id="detailMenuItem" value="{!mi1.Item_Name__c}" required="true" disabled="true"/>
+        <a href="#" onclick="openLookup1('{!$Component.detailTaxNumber}', '{!$Component.targetNameId}'); return false" >
+        Click</a> 
+         
+        <apex:inputField label="Total Item Price" value="{!mi1.Total_Item_Price__c}" required="true" />
+      </apex:pageBlockSection>
+      
+ <!--   </apex:PageBlock>
+    <apex:pageBlock id="buttonsSaveCancel">
+ -->     <apex:pageBlockButtons style="align:middle;">
+        <apex:commandButton action="{!dosave}" value="save" />
+        <apex:commandButton action="{!cancel}" value="cancel"/>
+      </apex:pageBlockButtons>
+    </apex:PageBlock>
+    
+  </apex:form>
+
+</apex:page>
