@@ -5,7 +5,7 @@ private class HelloWorldTestClass {
     System.debug('Price before inserting new book: ' + b.Price__c);
     // Insert book
     insert b;
-    system.debug('this is test comment in GITHUB');
+    system.debug('this is test comment in GITHUB public');
     // Retrieve the new book
     b = [SELECT Price__c FROM Book__c WHERE Id =:b.Id];
     System.debug('Price after trigger fired: ' + b.Price__c);
